@@ -1,0 +1,19 @@
+
+function sum(arr: number[] = [], num: number): boolean {
+    if (num === arr[0]) {
+        return true
+    }
+    const length = arr.length
+    if (length === 1) {
+        return false
+    }
+
+    const firstPart = arr.slice(0, Math.floor(length / 2))
+    const secondPart = arr.slice(Math.floor(length / 2))
+
+    if (num > firstPart[firstPart.length - 1]) {
+        return sum(secondPart, num)
+    } else {
+        return sum(firstPart, num)
+    }
+}
