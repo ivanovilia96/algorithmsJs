@@ -1,0 +1,10 @@
+function fastSortArr(arr: Array<number> = []): number[] | string {
+    if (arr.length === 1 || arr.length === 0) {
+        return arr
+    } else {
+        const baseElement = arr[0];
+        const lessThenBase = arr.slice(1).filter(i => i < baseElement);
+        const greaterThenBase = arr.slice(1).filter(i => i > baseElement);
+        return fastSortArr(lessThenBase) + baseElement.toString() + fastSortArr(greaterThenBase);
+    }
+}
