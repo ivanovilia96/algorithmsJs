@@ -1,0 +1,10 @@
+const checkedNodes: string[] = []
+
+function graphSearch(whatSearch: string, arr: string[], startNode: string): boolean {
+    if (arr.find((i: string) => i === whatSearch)) {
+        return true
+    } else {
+        checkedNodes.push(startNode)
+        return arr.map(i => checkedNodes.includes(i) ? false : graphSearch(whatSearch, graph[i], i)).some(i => i)
+    }
+}
