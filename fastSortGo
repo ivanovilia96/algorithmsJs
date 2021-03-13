@@ -1,0 +1,43 @@
+package main
+
+import "fmt"
+
+func findLess(arr []int, val int) []int {
+	result := []int{}
+	for _, v := range arr {
+		if v <= val {
+			result = append(result, v)
+		}
+	}
+	return result
+}
+
+func findGrether(arr []int, val int) []int {
+	result := []int{}
+	for _, v := range arr {
+		if v > val {
+			result = append(result, v)
+		}
+	}
+	return result
+}
+
+func fastSort(arr []int) []int {
+	if len(arr) < 2 {
+		return arr
+	}
+	pointIndex := len(arr) / 2
+	middle := arr[pointIndex]
+	neededArr := arr[:pointIndex]
+	println(middle, "- mid")
+	neededArr = append(neededArr, arr[pointIndex+1:]...)
+	lessThenMiddle := findLess(neededArr, middle)
+	gretherThenMiddle := findGrether(neededArr, middle)
+
+	sorted1 := fastSort(lessThenMiddle)
+	return append(append(sorted1, middle), fastSort(gretherThenMiddle)...)
+}
+
+func main() {
+	fmt.Println(fastSort([]int{1, 3, 2, 0, 3, 1}))
+}
